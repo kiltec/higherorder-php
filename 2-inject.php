@@ -14,9 +14,9 @@ $prod = function($xs) {
 
 pp('prod', $prod(array(2,3,4)));
 
-$grep = function($pred, $xs) {
-	return $inject(array(), function($rs, $x) use($pred) {
-		if($pred($x)) {
+$grep = function($f, $xs) {
+	return $inject(array(), function($rs, $x) use($f) {
+		if($f($x)) {
 		 	$rs[] = $x;
 		}
 		return $rs;
