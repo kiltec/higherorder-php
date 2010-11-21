@@ -18,8 +18,8 @@ $prod = function($xs) {
 };
 
 $grep = function($pred, $xs) {
-	return inject(array(), function($rs, $x) use($pred){
-		if($pred === $x) {
+	return inject(array(), function($rs, $x) use($pred) {
+		if($pred($x)) {
 		 	$rs[] = $x;
 		}
 		return $rs;
@@ -27,7 +27,7 @@ $grep = function($pred, $xs) {
 	, $xs);
 };
 
-
 pp('sum', $sum(array(2,3)));
 pp('prod', $prod(array(2,3,4)));
-pp('grep', implode(',', $grep('lars', array('bernd', 'karl', 'lars', 'tim', 'lars'))));
+$uneven = function($x) { return $x % 2; };
+pp('grep', implode(',', $grep($uneven, array(2, 4, 3, 5, 2, 126, 123))));
