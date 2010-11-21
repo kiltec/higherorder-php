@@ -27,7 +27,19 @@ $grep = function($pred, $xs) {
 	, $xs);
 };
 
+$map = function($f, $xs) {
+	return inject(array(), function($rs, $x) use($f) {
+		$rs[] = $f($x);
+		return $rs;
+ 	}, $xs);
+};
+
 pp('sum', $sum(array(2,3)));
+
 pp('prod', $prod(array(2,3,4)));
+
 $uneven = function($x) { return $x % 2; };
-pp('grep', implode(',', $grep($uneven, array(2, 4, 3, 5, 2, 126, 123))));
+pp('grep', $grep($uneven, array(2, 4, 3, 5, 2, 126, 123)));
+
+$double = function($x) { return $x * 2; };
+pp('map', $map($double, array(1, 124, 6)));
