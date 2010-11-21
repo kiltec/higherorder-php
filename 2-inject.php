@@ -8,7 +8,7 @@ $sum = function($xs) use($inject) {
 
 pp('sum', $sum(array(2,3)));
 
-$prod = function($xs) {
+$prod = function($xs) use($inject) {
 	return $inject(1, function($a, $b) { return $a * $b;}, $xs);
 };
 
