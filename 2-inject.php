@@ -1,13 +1,6 @@
 <?php
 require('pp.php');
-
-function inject($i, $f, $xs) {
-	$r = $i;
-	foreach($xs as $x) {
-		$r = $f($r, $x);
-	}
-	return $r;
-}
+require('inject.php');
 
 $sum = function($xs) {
 	return inject(0, function($a, $b) { return $a + $b;}, $xs);
