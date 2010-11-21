@@ -1,4 +1,6 @@
 <?php
+require('pp.php');
+
 function inject($i, $f, $xs) {
 	$r = $i;
 	foreach($xs as $x) {
@@ -15,5 +17,5 @@ $prod = function($xs) {
 	return inject(1, function($a, $b) { return $a * $b;}, $xs);
 };
 
-printf("Result %s: %s \n", 'sum', $sum(array(2,3)));
-printf("Result %s: %s \n", 'prod', $prod(array(2,3,4)));
+pp('sum', $sum(array(2,3)));
+pp('prod', $prod(array(2,3,4)));
