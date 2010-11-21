@@ -38,7 +38,7 @@ $each = function($f, $xs) {
 	return inject(null, function($_, $x) use($f) {
 		$f($x);
 		return $_;
-		}
+	}
 	, $xs);
 };
 
