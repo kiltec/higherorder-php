@@ -15,5 +15,5 @@ $prod = function($xs) {
 	return inject(1, function($a, $b) { return $a * $b;}, $xs);
 };
 
-printf("Result: %s \n", $sum(array(2,3)));
-printf("Result: %s \n", $prod(array(2,3,4)));
+printf("Result %s: %s \n", 'sum', $sum(array(2,3)));
+printf("Result %s: %s \n", 'prod', $prod(array(2,3,4)));
