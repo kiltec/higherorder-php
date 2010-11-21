@@ -34,6 +34,14 @@ $map = function($f, $xs) {
  	}, $xs);
 };
 
+$each = function($f, $xs) {
+	return inject(null, function($_, $x) use($f) {
+		$f($x);
+		return $_;
+		}
+	, $xs);
+};
+
 pp('sum', $sum(array(2,3)));
 
 pp('prod', $prod(array(2,3,4)));
@@ -43,3 +51,6 @@ pp('grep', $grep($uneven, array(2, 4, 3, 5, 2, 126, 123)));
 
 $double = function($x) { return $x * 2; };
 pp('map', $map($double, array(1, 124, 6)));
+
+$double_echo = function($x) { echo $x * 2; };
+pp('each', $each($double_echo, array(1, 124, 6)));
