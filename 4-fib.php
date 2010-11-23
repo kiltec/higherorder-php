@@ -30,13 +30,16 @@ $fib = $counted($fib);
 //$calls = 0;
 //printf("%d called 'fib' %d times\n", $fib(31), $calls);
 
-$memoize = function($f) {
+$memoize = function($f, $normalize = null) {
 	$results = array();
-	return function($arg) use($f, &$results) {
-		if(isset($results[$arg])) {
-			return $results[$arg];
+	if(!$normalize) $normalize = function($x) { return $x[0]; };
+	return function() use($f, &$results, $normalize) {
+		$args = func_get_args();
+		$key = $normalize($args);
+		if(isset($results[$key])) {
+			return $results[$key];
 		}else {
-			return $results[$arg] = $f($arg);
+			return $results[$key] = $f($key);
 		}
 	};
 };
