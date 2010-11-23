@@ -12,3 +12,20 @@ $fib = function($n) use(&$fib) {
 			}
 };
 pp('fib', $fib(7));
+
+$calls = 0;
+$counted = function($f) {
+	return function($f) use($f) {
+		global $calls;
+		$args = func_get_args();
+		$calls++;
+		return $f($args[0]);
+	};
+};
+
+$fib = $counted($fib);
+
+$calls = 0;
+printf("%d called 'fib' %d times\n", $fib(30), $calls);
+$calls = 0;
+printf("%d called 'fib' %d times\n", $fib(31), $calls);
